@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!--使用配置文件的形式代替实现一个接口-->
+<mapper namespace="com.sias.Dao.UserDao">
+    <!--1.resultType是一个返回类型，把数据放回到这个类中，因为过来的也是类，所有数据也是需要放到类中的-->
+    <select id="getAll" resultType="com.sias.Bean.User">
+        select * from su
+    </select>
+
+    <!--2.按照id来查询
+          因为有参数过来，所以需要来接受，然后在传递进去
+          其实可以这样理解，在写实现接口的时候，需要一个参数类型，以及一个
+          参数，写在括号中，所以这个也是一样的，也是需要有参数来接收的-->
+    <select id="GetById" parameterType="int" resultType="com.sias.Bean.User">
+        select * from su where id =#{id}
+    </select>
+
+
+    <!--3.按照id删除一样数据-->
+    <select id="delete" parameterType="int">
+        delete from su where id =#{id}
+    </select>
+
+    <!--4.按照id去修改一行数据-->
+    <update id="update" parameterType="com.sias.Bean.User" >
+        update  su set name=#{name}, pwd=#{pwd} where id =#{id}
+    </update>
+</mapper>
