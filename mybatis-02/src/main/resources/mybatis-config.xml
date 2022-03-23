@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--这是一个核心配置文件-->
+<configuration>
+
+    <!--1.引入外部配置文件
+          这个配置文件，就是resources
+          这属性需要写在前面-->
+    <properties resource="db.properties"/>
+
+
+    <!--日志的配置-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--起别名，这种方式是扫描包的形式，
+        别名的目的是为了在返回类型上直接写上一个对象的别名，不需要在写类的全路径了
+        如果说在扫描的包下面类中也有一个别名注解的话，以类中的注解为主
+        没有注解的话，以类的名字小写，其实大写的也是可以的-->
+    <typeAliases>
+        <!---->
+        <package name="com.sias.Bean"/>
+    </typeAliases>
+
+
+
+    <!--2.下面的环境可以配置多套环境
+          下面的环境，默认使用的是第一个，下面可以
+          有很多个环境，所谓的环境就是environment
+          这个，只允许有一个环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--01.下面的是一个事务的管理，就是管理提交到数据库的数据
+                    POOLED默认的是一个数据库连接池，所以的连接池，就是用完之后
+                    暂时不放回，JDBC默认的是这个，其实还有一个的，只是暂时用不到-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--001.下面的这几个是连接数据库的信息（密码，地址和账户）-->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+
+
+    <!--3.解释一下为什么要写上这个，因为写的配置文件都是需要绑定的
+          原因是，因为下调用最终方法的时候，不会找到下面这个文件
+          需要加上这个文件之后，在调用的时候才可以找到
+          注意：resource绑定的是斜杠，还有其他的绑定形式
+          这种绑定形式，下面的也是可以小写的，是可以扫描到的
+          ,class的形式，需要具体的位置才可以实现，一般不使用class的形式，
+          -->
+    <mappers>
+<!--        <mapper class="com.sias.Dao.UserMapper"></mapper>-->
+        <mapper resource="com/sias/Dao/UserMapper.xml"/>
+    </mappers>
+</configuration>
