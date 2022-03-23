@@ -68,5 +68,21 @@ public class MybatisTest {
         *    怎么去写数据，哪就是对象了，就是用一个对象去存放数据，设置数据*/
         int update = mapper.update(new User(3, "王五", "3"));
         System.out.println(update);
+        session.close();
+    }
+
+
+    /*5.增加用户数据*/
+    @Test
+    @DisplayName("5.增加用户数据")
+    public void insert(){
+        SqlSession session = MybatisUtils.getSession();
+        UserDao mapper = session.getMapper(UserDao.class);
+        int insert = mapper.insert(new User(4, "扇子", "010101010"));
+        System.out.println("执行插入的形式成功");
+        System.out.println(insert);
+        /*01.注意：什么使用去提交数据，之后当数据库中的数据大范围的改变的时候，才可以去提交数据*/
+        session.commit();
+        session.close();
     }
 }

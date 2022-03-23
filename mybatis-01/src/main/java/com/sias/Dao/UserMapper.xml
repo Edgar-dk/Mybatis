@@ -28,4 +28,9 @@
     <update id="update" parameterType="com.sias.Bean.User" >
         update  su set name=#{name}, pwd=#{pwd} where id =#{id}
     </update>
+
+    <!--5.增加数据-->
+    <insert id="insert" parameterType="com.sias.Bean.User">
+        insert into su (id,name,pwd) value (#{id},#{name},#{pwd})
+    </insert>
 </mapper>

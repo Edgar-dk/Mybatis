@@ -22,4 +22,7 @@ public interface UserDao {
     /*4.按照id来修改一行数据
     *   下面的是模板，具体的数据还是需要去创建一个对象之后，在去填写数据*/
     public int update(User user);
+
+    /*5.增加数据*/
+    public int insert(User user);
 }
