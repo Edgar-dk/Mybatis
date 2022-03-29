@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!--使用配置文件的形式代替实现一个接口-->
+<mapper namespace="com.sias.Dao.UserMapper">
+    <!--1.resultType是一个返回类型，把数据放回到这个类中，因为过来的也是类，所有数据也是需要放到类中的-->
+    <select id="getAll" resultType="com.sias.Bean.User">
+        select * from su
+    </select>
+
+    <!--2.按照id来查询
+          因为有参数过来，所以需要来接受，然后在传递进去
+          其实可以这样理解，在写实现接口的时候，需要一个参数类型，以及一个
+          参数，写在括号中，所以这个也是一样的，也是需要有参数来接收的-->
+    <select id="GetById" parameterType="int" resultType="com.sias.Bean.User">
+        select * from su where id =#{id}
+    </select>
+
+    <!--02.Map的形式按照id去查询-->
+    <select id="GetById2" resultType="com.sias.Bean.User" parameterType="map">
+        select * from su where id =#{userid}
+    </select>
+
+    <!--3.按照id删除一样数据-->
+    <select id="delete" parameterType="int">
+        delete from su where id =#{id}
+    </select>
+
+    <!--4.按照id去修改一行数据-->
+    <update id="update" parameterType="com.sias.Bean.User" >
+        update  su set name=#{name}, pwd=#{pwd} where id =#{id}
+    </update>
+
+    <!--5.增加数据
+          value后面的值需要和数据库中的一样，否则的话曾加不上
+          为什么呢，原因是，这个传递的参数是一个对象，所以在传递的参数也是需要和
+          对象中的属性一样的，-->
+    <insert id="insert" parameterType="com.sias.Bean.User">
+        insert into su (id,name,pwd) value (#{id},#{name},#{pwd})
+    </insert>
+    <!--05.Map的方式去增加用户数据
+           按照简直对的方式去增加的
+           parameterType是一个参数类型，可以是对象，可以是普通的，也可以是Map
+           传递过来数据的话，直接到map这里，在到value后面，根据简直对，最后在到前面的数据-->
+    <insert id="insert2" parameterType="map">
+        insert into su (id,name ,pwd) value (#{userid},#{username},#{userpwd})
+    </insert>
+
+
+
+
+
+    <!--6.模糊查询
+         -->
+    <select id="GetListLike" resultType="com.sias.Bean.User" parameterType="string">
+        /*01.name后面的like相当于是一个等于号，等于的值就是大括号中的，这个值可以随便的取*/
+        select * from su where name like #{value}
+    </select>
+</mapper>

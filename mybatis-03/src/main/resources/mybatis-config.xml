@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--这是一个核心配置文件-->
+<configuration>
+    <!--1.下面的环境可以配置多套环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--01.下面的是一个事务的管理，就是管理提交到数据库的数据-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--001.下面的这几个是连接数据库的信息（密码，地址和账户）-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/mybatis? useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--2.解释一下为什么要写上这个，因为写的配置文件都是需要绑定的
+          原因是，因为下调用最终方法的时候，不会找到下面这个文件
+          需要加上这个文件之后，在调用的时候才可以找到
+          注意：resource绑定的是斜杠，还有其他的绑定形式-->
+    <mappers>
+        <mapper class="com.sias.Dao.UserMapper"/>
+    </mappers>
+</configuration>

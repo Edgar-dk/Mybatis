@@ -35,9 +35,22 @@ public class MybatisTest {
         session.close();
     }
 
-    /*3.测试日志*/
+
+    /*3.测试分页查询*/
     @Test
-    @DisplayName("测试日志")
-    public void log4j(){
+    @DisplayName("3.分页查询")
+    public void limit(){
+        SqlSession session = MybatisUtils.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("start",0);
+        map.put("stop",2);
+        List<User> limit = mapper.limit(map);
+        for (User user : limit) {
+            System.out.println(user);
+        }
+        session.close();
     }
+
+
 }

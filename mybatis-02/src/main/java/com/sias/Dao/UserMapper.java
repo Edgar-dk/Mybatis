@@ -21,20 +21,6 @@ public interface UserMapper {
     public User GetById2(Map map);
 
 
-    /*3.按照Id来删除一样数据*/
-    public void delete(int id);
-
-    /*4.按照id来修改一行数据
-    *   下面的是模板，具体的数据还是需要去创建一个对象之后，在去填写数据*/
-    public int update(User user);
-
-    /*5.增加数据*/
-    public int insert(User user);
-    /*05.Map的方式去增加用户数据*/
-    public int insert2(Map map);
-
-
-
-    /*6.模糊查询*/
-    public List<User> GetListLike(String name);
+    /*3.模糊查询*/
+    public List<User> limit(Map map);
 }
