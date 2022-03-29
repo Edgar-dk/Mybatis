@@ -23,6 +23,6 @@
           需要加上这个文件之后，在调用的时候才可以找到
           注意：resource绑定的是斜杠，还有其他的绑定形式-->
     <mappers>
-        <mapper class="com.sias.Dao.UserMapper"/>
+        <mapper class="com.sias3.Dao.UserMapper"/>
     </mappers>
 </configuration>

@@ -1,6 +1,8 @@
 package com.sias.Dao;
 
 import com.sias.Bean.User;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -37,4 +39,9 @@ public interface UserMapper {
 
     /*6.模糊查询*/
     public List<User> GetListLike(String name);
+
+
+    /*1.按照id去查询用户*/
+    @Select("select * from su where id=#{id}")
+    public User GetByID(@Param("id") int id);
 }

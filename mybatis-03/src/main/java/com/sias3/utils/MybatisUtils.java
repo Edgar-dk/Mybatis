@@ -1,4 +1,4 @@
-package com.sias.utils;
+package com.sias3.utils;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -15,14 +15,14 @@ import java.io.InputStream;
  */
 
 /*这个是一个工厂对象和原先的JDBC的模式不一样，这个是想创建好工厂之后，再去在这个工厂中去生产对象，然后根据创建好的对象
-* 去操作数据库，这个创建好的对象，可以不放在这个地方，可以把这个对象，注入到其他的类中，然后在使用这个对象的方法*/
+ * 去操作数据库，这个创建好的对象，可以不放在这个地方，可以把这个对象，注入到其他的类中，然后在使用这个对象的方法*/
 public class MybatisUtils {
     private static SqlSessionFactory sqlSessionFactory;
 
     static {
         try {
             /*第一步，获取sqlSessionFactory这个对象，就是先创建好工厂，创建的时候，顺便
-            *      加载连接数据的配置文件*/
+             *      加载连接数据的配置文件*/
             String resource = "mybatis-config.xml";
             InputStream inputStream = Resources.getResourceAsStream(resource);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);

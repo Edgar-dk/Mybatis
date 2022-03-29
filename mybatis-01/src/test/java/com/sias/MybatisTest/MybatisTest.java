@@ -132,4 +132,28 @@ public class MybatisTest {
         }
         session.close();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    /*1.按照id来查询数据*/
+    @Test
+    @DisplayName("1.按照id来查询数据")
+    public void GetById2(){
+        SqlSession session = MybatisUtils.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user = mapper.GetByID(11);
+        System.out.println(user);
+        session.close();
+    }
+
+
 }

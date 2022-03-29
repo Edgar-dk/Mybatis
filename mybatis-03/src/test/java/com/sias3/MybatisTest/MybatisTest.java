@@ -1,13 +1,14 @@
-package com.siass.MybatisTest;
+package com.sias3.MybatisTest;
 
-import com.sias.Bean.User;
-import com.sias.Dao.UserMapper;
-import com.sias.utils.MybatisUtils;
+
+
+import com.sias3.Bean.User;
+import com.sias3.Dao.UserMapper;
+import com.sias3.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -60,8 +61,24 @@ public class MybatisTest {
     public void AddUserl(){
         SqlSession session = MybatisUtils.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
-        mapper.AddUser(new User(9, "站三你看书", "998"));
-//        System.out.println(user);
+        mapper.AddUser(new User(13, "站三你看书", "998"));
+        System.out.println("成功的插入了数据");
+        session.commit();
+        session.close();
+
+    }
+
+    /*5.修改用户的信息*/
+    @Test
+    @DisplayName("5.修改用户的信息")
+    public void update(){
+        SqlSession session = MybatisUtils.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user = new User(11, "张三", "0");
+        /*01.注意前面的放回值，是从数据库中放回数据用的，要不然的话，数据
+        *    从哪里放回过来呢？*/
+        int update = mapper.update(user);
+        System.out.println(update);
         session.close();
     }
 }

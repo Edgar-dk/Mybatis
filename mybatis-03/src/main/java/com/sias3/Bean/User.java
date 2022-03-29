@@ -1,4 +1,4 @@
-package com.sias.Bean;
+package com.sias3.Bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
