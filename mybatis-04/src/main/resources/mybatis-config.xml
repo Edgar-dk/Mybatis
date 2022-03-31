@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
+
 <!--这是一个核心配置文件-->
 <configuration>
+
+
+
+
+    <typeAliases>
+        <!---->
+        <package name="com.sias4.entity"/>
+    </typeAliases>
     <!--1.下面的环境可以配置多套环境-->
     <environments default="development">
         <environment id="development">
@@ -22,7 +31,12 @@
           原因是，因为下调用最终方法的时候，不会找到下面这个文件
           需要加上这个文件之后，在调用的时候才可以找到
           注意：resource绑定的是斜杠，还有其他的绑定形式-->
+
     <mappers>
-        <mapper class="com.sias3.Dao.UserMapper"/>
+        <!--1.注意：在写路径的话，不同的状况，写的也是不同的
+                   class的话，是接口，resource是实现文件
+                   还有一个点的是，想要使用resource的话，需要注意
+                   在里面创建文件的时候，应该可以折叠的形式-->
+        <mapper class="com.sias4.Dao.StudentMapper"/>
     </mappers>
 </configuration>

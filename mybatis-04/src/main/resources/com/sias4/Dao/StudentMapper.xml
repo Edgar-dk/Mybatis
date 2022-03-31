@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!--使用配置文件的形式代替实现一个接口-->
+<mapper namespace="com.sias4.Dao.StudentMapper">
+
+<!--    <resultMap id="UserMap" type="User">-->
+<!--        &lt;!&ndash;01.column是数据库中的字段，后面的是idea中User的属性&ndash;&gt;-->
+<!--        <result column="pwd" property="password"></result>-->
+<!--    </resultMap>-->
+
+
+
+   <select id="GetAll" resultType="student">
+       select * from student
+   </select>
+
+
+
+</mapper>
